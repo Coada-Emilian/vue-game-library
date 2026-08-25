@@ -1,22 +1,31 @@
 import type { Game } from "../types/game";
+import type { GameDetails } from "../types/gameDetails";
+
+const apiKey = import.meta.env.VITE_RAWG_API_KEY;
+const baseUrl = "https://api.rawg.io/api";
 
 const searchGames = async (query: string): Promise<Game[]> => {
-  const apiKey = import.meta.env.VITE_RAWG_API_KEY;
   const response = await fetch(
-    `https://api.rawg.io/api/games?key=${apiKey}&search=${encodeURIComponent(query)}`,
+    `${baseUrl}/games?key=${apiKey}&search=${encodeURIComponent(query)}`,
   );
   const data = await response.json();
   return data.results;
 };
 
-const getGameDetails = async (id: number): Promise<Game> => {
-  const apiKey = import.meta.env.VITE_RAWG_API_KEY;
-
-  const response = await fetch(
-    `https://api.rawg.io/api/games/${id}?key=${apiKey}`,
-  );
+const getGameDetails = async (id: number): Promise<GameDetails> => {
+  const response = await fetch(`${baseUrl}/games/${id}?key=${apiKey}`);
 
   return response.json();
 };
 
-export { getGameDetails, searchGames };
+const getGameSeries = async (id: number): Promise<Game[]> => {
+  const response = await fetch(
+    `${baseUrl}/games/${id}/game-series?key=${apiKey}`,
+  );
+
+  const data = await response.json();
+
+  return data.results;
+};
+
+export { getGameDetails, getGameSeries, searchGames };
