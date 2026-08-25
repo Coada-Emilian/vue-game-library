@@ -1,14 +1,30 @@
 <script setup lang="ts">
 import { useQuery } from "@tanstack/vue-query";
 import { computed, ref } from "vue";
-import { useRouter } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 import GameCard from "../components/GameCard.vue";
 import Header from "../components/header/Header.vue";
 import { searchGames } from "../services/rawg";
 
-const searchTerm = ref("");
-const submittedSearchTerm = ref("");
+const search = (query: string) => {
+  submittedSearchTerm.value = query;
 
+  router.push({
+    name: "explore",
+    query: {
+      search: query,
+    },
+  });
+};
+
+const router = useRouter();
+const route = useRoute();
+
+const searchTerm = ref(
+  typeof route.query.search === "string" ? route.query.search : "",
+);
+
+const submittedSearchTerm = ref(searchTerm.value);
 const {
   data: games,
   isPending,
@@ -18,12 +34,6 @@ const {
   queryFn: () => searchGames(submittedSearchTerm.value),
   enabled: computed(() => submittedSearchTerm.value.length > 0),
 });
-
-const search = (query: string) => {
-  submittedSearchTerm.value = query;
-};
-
-const router = useRouter();
 
 const selectGame = (gameId: number) => {
   router.push({
