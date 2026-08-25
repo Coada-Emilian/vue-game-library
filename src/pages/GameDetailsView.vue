@@ -7,6 +7,14 @@ import { useLibraryStore } from "../stores/library";
 
 const library = useLibraryStore();
 
+const currentStatus = computed(() => {
+  if (!game.value) {
+    return undefined;
+  }
+
+  return library.getGameStatus(game.value.id);
+});
+
 const route = useRoute();
 
 const gameId = computed(() => Number(route.params.id));
@@ -74,6 +82,38 @@ const {
                   .join(" · ")
               }}
             </p>
+
+            <section class="library-actions">
+              <h2>My Library</h2>
+
+              <button
+                :class="{ active: currentStatus === 'backlog' }"
+                @click="library.addGame(game, 'backlog')"
+              >
+                Backlog
+              </button>
+
+              <button
+                :class="{ active: currentStatus === 'playing' }"
+                @click="library.addGame(game, 'playing')"
+              >
+                Playing
+              </button>
+
+              <button
+                :class="{ active: currentStatus === 'finished' }"
+                @click="library.addGame(game, 'finished')"
+              >
+                Finished
+              </button>
+
+              <button
+                :class="{ active: currentStatus === 'abandoned' }"
+                @click="library.addGame(game, 'abandoned')"
+              >
+                Abandoned
+              </button>
+            </section>
           </div>
         </div>
       </section>
@@ -95,9 +135,6 @@ const {
           {{ game.publishers.map((publisher) => publisher.name).join(", ") }}
         </p>
       </section>
-
-      <button @click="library.addGame(game, 'backlog')">Add to Backlog</button>
-      <pre>{{ library.games }}</pre>
 
       <section class="series">
         <h2>Related Games</h2>
@@ -263,5 +300,42 @@ const {
   .game-info h1 {
     font-size: 2.2rem;
   }
+}
+
+.library-actions {
+  padding: 30px 0;
+  border-top: 1px solid #333;
+}
+
+.library-actions h2 {
+  margin-top: 0;
+}
+
+.library-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.library-actions h2 {
+  width: 100%;
+}
+
+.library-actions button {
+  padding: 10px 16px;
+  border: 1px solid #444;
+  border-radius: 6px;
+  background: #1c1c1c;
+  color: #f5f5f5;
+  cursor: pointer;
+}
+
+.library-actions button:hover {
+  background: #333;
+}
+
+.library-actions button.active {
+  border-color: #aaa;
+  background: #444;
 }
 </style>

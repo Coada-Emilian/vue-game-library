@@ -25,4 +25,12 @@ export const useLibraryStore = defineStore("library", {
       });
     },
   },
+
+  getters: {
+    getGameStatus: (state) => {
+      return (gameId: number) => {
+        return state.games.find((game) => game.id === gameId)?.status;
+      };
+    },
+  },
 });
