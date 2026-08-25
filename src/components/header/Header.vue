@@ -9,21 +9,35 @@ const emit = defineEmits<{
 </script>
 
 <template>
-  <div class="container">
-    <h1>Game Library</h1>
+  <header class="header">
+    <RouterLink to="/" class="logo"> Game Library </RouterLink>
 
     <SearchForm v-model="searchTerm" @search="emit('search', $event)" />
-  </div>
+  </header>
 </template>
 
 <style scoped>
-.container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
+.header {
+  width: 100%;
+  padding: 20px 40px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 20px;
+  gap: 30px;
+  border-bottom: 1px solid #333;
+  background: #1c1c1c;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+@media (max-width: 700px) {
+  .header {
+    padding: 20px;
+    flex-direction: column;
+  }
 }
 </style>

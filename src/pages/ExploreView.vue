@@ -36,31 +36,42 @@ const selectGame = (gameId: number) => {
 </script>
 
 <template>
-  <main>
+  <main class="explore">
     <Header v-model="searchTerm" @search="search" />
 
-    <p v-if="isPending && submittedSearchTerm">Loading...</p>
+    <section class="content">
+      <p v-if="isPending && submittedSearchTerm">Loading...</p>
 
-    <p v-else-if="error">Something went wrong: {{ error.message }}</p>
+      <p v-else-if="error">Something went wrong: {{ error.message }}</p>
 
-    <p v-else-if="!games?.length">Search for a game to get started.</p>
+      <p v-else-if="!games?.length">Search for a game to get started.</p>
 
-    <div v-else class="game-grid">
-      <GameCard
-        v-for="game in games"
-        :key="game.id"
-        :game="game"
-        @select="selectGame"
-      />
-    </div>
+      <div v-else class="game-grid">
+        <GameCard
+          v-for="game in games"
+          :key="game.id"
+          :game="game"
+          @select="selectGame"
+        />
+      </div>
+    </section>
   </main>
 </template>
 
 <style scoped>
+.explore {
+  min-height: 100vh;
+}
+
+.content {
+  width: min(1800px, 100%);
+  margin: 0 auto;
+  padding: 24px;
+}
+
 .game-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 20px;
-  padding: 20px;
+  gap: 16px;
 }
 </style>

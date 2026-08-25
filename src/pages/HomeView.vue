@@ -28,58 +28,72 @@
 <style scoped>
 .home {
   min-height: 100vh;
+  padding: 80px 40px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  padding: 40px;
-  box-sizing: border-box;
 }
 
 .hero {
-  text-align: center;
   max-width: 700px;
-  margin-bottom: 50px;
+  margin-bottom: 60px;
+  text-align: center;
 }
 
 .hero h1 {
-  font-size: 48px;
-  margin-bottom: 16px;
+  margin: 0 0 20px;
+  font-size: 3.5rem;
 }
 
 .hero p {
-  font-size: 18px;
+  margin: 0;
+  color: #aaa;
+  font-size: 1.1rem;
   line-height: 1.6;
 }
 
 .navigation {
   display: grid;
-  grid-template-columns: repeat(2, minmax(250px, 1fr));
-  gap: 24px;
-  width: min(800px, 100%);
+  grid-template-columns: repeat(2, minmax(280px, 1fr));
+  gap: 30px;
+  width: min(900px, 100%);
 }
 
 .navigation-card {
-  padding: 32px;
-  border: 1px solid #ddd;
-  border-radius: 12px;
+  padding: 35px;
+  border: 1px solid #333;
+  border-radius: 14px;
+  background: #1c1c1c;
   text-decoration: none;
-  color: inherit;
   transition:
-    transform 0.2s,
-    box-shadow 0.2s;
+    transform 0.2s ease,
+    border-color 0.2s ease;
 }
 
 .navigation-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  transform: translateY(-5px);
+  border-color: #666;
 }
 
 .navigation-card h2 {
-  margin-top: 0;
+  margin: 0 0 12px;
 }
 
-@media (max-width: 650px) {
+.navigation-card p {
+  margin: 0;
+  color: #aaa;
+  line-height: 1.5;
+}
+
+@media (max-width: 700px) {
+  .home {
+    padding: 50px 20px;
+  }
+
+  .hero h1 {
+    font-size: 2.5rem;
+  }
+
   .navigation {
     grid-template-columns: 1fr;
   }

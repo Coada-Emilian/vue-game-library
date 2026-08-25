@@ -6,9 +6,11 @@ const baseUrl = "https://api.rawg.io/api";
 
 const searchGames = async (query: string): Promise<Game[]> => {
   const response = await fetch(
-    `${baseUrl}/games?key=${apiKey}&search=${encodeURIComponent(query)}`,
+    `${baseUrl}/games?key=${apiKey}&search=${encodeURIComponent(query)}&search_precise=true`,
   );
+
   const data = await response.json();
+
   return data.results;
 };
 
@@ -20,7 +22,7 @@ const getGameDetails = async (id: number): Promise<GameDetails> => {
 
 const getGameSeries = async (id: number): Promise<Game[]> => {
   const response = await fetch(
-    `${baseUrl}/games/${id}/game-series?key=${apiKey}`,
+    `${baseUrl}/games/${id}/game-series?key=${apiKey}&search_precise=true`,
   );
 
   const data = await response.json();
