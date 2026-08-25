@@ -103,9 +103,13 @@ const {
         </p>
 
         <div v-else-if="series?.length" class="series-grid">
-          <div
+          <RouterLink
             v-for="seriesGame in series"
             :key="seriesGame.id"
+            :to="{
+              name: 'game-details',
+              params: { id: seriesGame.id },
+            }"
             class="series-card"
           >
             <img
@@ -119,7 +123,7 @@ const {
             <p v-if="seriesGame.released">
               {{ seriesGame.released }}
             </p>
-          </div>
+          </RouterLink>
         </div>
 
         <p v-else>No other games in this series.</p>
@@ -217,6 +221,8 @@ const {
   border: 1px solid #333;
   border-radius: 10px;
   background: #1c1c1c;
+  color: inherit;
+  text-decoration: none;
 }
 
 .series-card img {
