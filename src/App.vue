@@ -14,5 +14,16 @@ onMounted(async () => {
 <template>
   <h1>Game Library</h1>
 
-  <GameCard v-for="game in games" :key="game.id" :game="game" />
+  <div class="game-grid">
+    <GameCard v-for="game in games" :key="game.id" :game="game" />
+  </div>
 </template>
+
+<style scoped>
+.game-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+</style>
