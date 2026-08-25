@@ -3,7 +3,7 @@
 <template>
   <main class="home">
     <section class="hero">
-      <h1>Game Library</h1>
+      <img src="/logo.png" alt="Game Library" class="logo" />
 
       <p>
         Welcome to your game library. Discover new games and keep track of what
@@ -40,9 +40,11 @@
   text-align: center;
 }
 
-.hero h1 {
-  margin: 0 0 20px;
-  font-size: 3.5rem;
+.logo {
+  display: block;
+  width: min(700px, 100%);
+  height: auto;
+  margin: 0 auto 20px;
 }
 
 .hero p {

@@ -1,7 +1,7 @@
 import { defineStore } from "pinia";
-import type { LibraryGame } from "../types/LibraryGame";
 import type { Game } from "../types/game";
 import type { GameStatus } from "../types/gameStatus";
+import type { LibraryGame } from "../types/libraryGame";
 
 export const useLibraryStore = defineStore("library", {
   state: () => ({

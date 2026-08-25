@@ -181,13 +181,6 @@ const isInLibrary = (gameId: number) => {
         </div>
 
         <p v-else>No other games in this series.</p>
-        <pre>{{
-          library.games.map((game) => ({
-            id: game.id,
-            name: game.name,
-            status: game.status,
-          }))
-        }}</pre>
       </section>
     </div>
   </main>

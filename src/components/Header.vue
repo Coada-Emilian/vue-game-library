@@ -2,7 +2,9 @@
 
 <template>
   <header class="header">
-    <RouterLink to="/" class="logo">Game Library</RouterLink>
+    <RouterLink to="/" class="logo-link">
+      <img src="/logo.png" alt="Game Library" class="logo-image" />
+    </RouterLink>
 
     <nav class="navigation">
       <RouterLink to="/explore">Explore</RouterLink>
@@ -14,26 +16,24 @@
 <style scoped>
 .header {
   width: 100%;
-  padding: 20px 40px;
+  padding: 12px 40px;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
   gap: 30px;
   border-bottom: 1px solid #333;
   background: #1c1c1c;
 }
 
-.logo {
-  font-size: 1.5rem;
-  font-weight: 700;
+.logo-link {
+  display: flex;
+  align-items: center;
   text-decoration: none;
 }
 
-@media (max-width: 700px) {
-  .header {
-    padding: 20px;
-    flex-direction: column;
-  }
+.logo-image {
+  display: block;
+  width: 140px;
+  height: auto;
 }
 
 .navigation {
@@ -53,5 +53,12 @@
 
 .navigation a.router-link-active {
   color: #f5f5f5;
+}
+
+@media (max-width: 700px) {
+  .header {
+    padding: 12px 20px;
+    flex-direction: column;
+  }
 }
 </style>
