@@ -1,5 +1,17 @@
-# Vue 3 + TypeScript + Vite
+# Vue Game Library
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+A small game library built with Vue.js and TypeScript as a practical project to consolidate Vue fundamentals through hands-on development.
 
-Learn more about the recommended Project Setup and IDE Support in the [Vue Docs TypeScript Guide](https://vuejs.org/guide/typescript/overview.html#project-setup).
+The project will progressively explore:
+
+- Vue components
+- Reactive state
+- API fetching
+- Search and filtering
+- Props and events
+- Vue Router
+- State management
+- TypeScript
+- Testing
+
+Built with Vue, TypeScript and Vite.
