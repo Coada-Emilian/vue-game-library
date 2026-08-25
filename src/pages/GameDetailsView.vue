@@ -2,6 +2,7 @@
 import { useQuery } from "@tanstack/vue-query";
 import { computed } from "vue";
 import { useRoute } from "vue-router";
+import Header from "../components/Header.vue";
 import { getGameDetails, getGameSeries } from "../services/rawg";
 import { useLibraryStore } from "../stores/library";
 
@@ -39,6 +40,7 @@ const {
 </script>
 
 <template>
+  <Header />
   <main class="details">
     <p v-if="isPending" class="status">Loading...</p>
 

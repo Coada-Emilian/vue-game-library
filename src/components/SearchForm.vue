@@ -7,7 +7,6 @@ const emit = defineEmits<{
 
 const onSubmit = () => {
   emit("search", searchTerm.value ?? "");
-  searchTerm.value = "";
 };
 </script>
 
