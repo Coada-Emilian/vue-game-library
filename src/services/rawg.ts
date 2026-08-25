@@ -9,4 +9,14 @@ const searchGames = async (query: string): Promise<Game[]> => {
   return data.results;
 };
 
-export default searchGames;
+const getGameDetails = async (id: number): Promise<Game> => {
+  const apiKey = import.meta.env.VITE_RAWG_API_KEY;
+
+  const response = await fetch(
+    `https://api.rawg.io/api/games/${id}?key=${apiKey}`,
+  );
+
+  return response.json();
+};
+
+export { getGameDetails, searchGames };
