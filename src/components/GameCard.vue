@@ -4,10 +4,14 @@ import type { Game } from "../types/game";
 defineProps<{
   game: Game;
 }>();
+
+const emit = defineEmits<{
+  select: [gameId: number];
+}>();
 </script>
 
 <template>
-  <div class="game-card">
+  <div class="game-card" @click="emit('select', game.id)">
     <img
       v-if="game.background_image"
       :src="game.background_image"
