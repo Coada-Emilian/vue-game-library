@@ -3,6 +3,9 @@ import { useQuery } from "@tanstack/vue-query";
 import { computed } from "vue";
 import { useRoute } from "vue-router";
 import { getGameDetails, getGameSeries } from "../services/rawg";
+import { useLibraryStore } from "../stores/library";
+
+const library = useLibraryStore();
 
 const route = useRoute();
 
@@ -92,6 +95,9 @@ const {
           {{ game.publishers.map((publisher) => publisher.name).join(", ") }}
         </p>
       </section>
+
+      <button @click="library.addGame(game, 'backlog')">Add to Backlog</button>
+      <pre>{{ library.games }}</pre>
 
       <section class="series">
         <h2>Related Games</h2>
