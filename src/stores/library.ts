@@ -5,8 +5,18 @@ import type { GameStatus } from "../types/gameStatus";
 
 export const useLibraryStore = defineStore("library", {
   state: () => ({
-    games: [] as LibraryGame[],
+    games: JSON.parse(
+      localStorage.getItem("library-games") ?? "[]",
+    ) as LibraryGame[],
   }),
+
+  getters: {
+    getGameStatus: (state) => {
+      return (gameId: number) => {
+        return state.games.find((game) => game.id === gameId)?.status;
+      };
+    },
+  },
 
   actions: {
     addGame(game: Game, status: GameStatus) {
@@ -23,14 +33,6 @@ export const useLibraryStore = defineStore("library", {
         ...game,
         status,
       });
-    },
-  },
-
-  getters: {
-    getGameStatus: (state) => {
-      return (gameId: number) => {
-        return state.games.find((game) => game.id === gameId)?.status;
-      };
     },
   },
 });

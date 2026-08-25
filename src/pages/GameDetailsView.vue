@@ -37,6 +37,10 @@ const {
   queryKey: ["game-series", gameId],
   queryFn: () => getGameSeries(gameId.value),
 });
+
+const isInLibrary = (gameId: number) => {
+  return library.games.some((game) => game.id === gameId);
+};
 </script>
 
 <template>
@@ -165,13 +169,25 @@ const {
 
             <h3>{{ seriesGame.name }}</h3>
 
-            <p v-if="seriesGame.released">
-              {{ seriesGame.released }}
-            </p>
+            <div class="date-library-section">
+              <p v-if="seriesGame.released">
+                {{ seriesGame.released }}
+              </p>
+              <p v-if="isInLibrary(seriesGame.id)" class="library-badge">
+                ✓ In Library
+              </p>
+            </div>
           </RouterLink>
         </div>
 
         <p v-else>No other games in this series.</p>
+        <pre>{{
+          library.games.map((game) => ({
+            id: game.id,
+            name: game.name,
+            status: game.status,
+          }))
+        }}</pre>
       </section>
     </div>
   </main>
@@ -339,5 +355,17 @@ const {
 .library-actions button.active {
   border-color: #aaa;
   background: #444;
+}
+
+.library-badge {
+  margin: 8px 0 0;
+  color: #aaa;
+  font-size: 0.85rem;
+}
+
+.date-library-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 </style>
