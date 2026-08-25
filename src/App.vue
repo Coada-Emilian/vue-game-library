@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { onMounted, ref } from "vue";
+import GameCard from "./components/GameCard.vue";
 import searchGames from "./services/rawg";
 import type { Game } from "./types/game";
 
@@ -13,7 +14,5 @@ onMounted(async () => {
 <template>
   <h1>Game Library</h1>
 
-  <p v-for="game in games" :key="game.id">
-    {{ game.name }}
-  </p>
+  <GameCard v-for="game in games" :key="game.id" :game="game" />
 </template>
