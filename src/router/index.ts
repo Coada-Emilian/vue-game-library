@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import ExploreView from "../pages/ExploreView.vue";
 import GameDetailsView from "../pages/GameDetailsView.vue";
 import HomeView from "../pages/HomeView.vue";
+import MyGamesView from "../pages/MyGamesView.vue";
 
 const router = createRouter({
   history: createWebHistory(),
@@ -21,6 +22,11 @@ const router = createRouter({
       path: "/games/:id",
       name: "game-details",
       component: GameDetailsView,
+    },
+    {
+      path: "/my-games",
+      name: "my-games",
+      component: MyGamesView,
     },
   ],
 });
