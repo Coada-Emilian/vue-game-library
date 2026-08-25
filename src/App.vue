@@ -1,18 +1,23 @@
 <script setup lang="ts">
 import { onMounted, ref } from "vue";
 import GameCard from "./components/GameCard.vue";
+import Header from "./components/header/Header.vue";
 import searchGames from "./services/rawg";
 import type { Game } from "./types/game";
 
+const searchTerm = ref("");
+
 const games = ref<Game[]>([]);
 
-onMounted(async () => {
-  games.value = await searchGames("witcher");
-});
+const search = async () => {
+  games.value = await searchGames(searchTerm.value);
+};
+
+onMounted(search);
 </script>
 
 <template>
-  <h1>Game Library</h1>
+  <Header v-model="searchTerm" @search="search" />
 
   <div class="game-grid">
     <GameCard v-for="game in games" :key="game.id" :game="game" />
