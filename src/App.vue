@@ -1,23 +1,40 @@
 <script setup lang="ts">
-import { onMounted, ref } from "vue";
+import { useQuery } from "@tanstack/vue-query";
+import { computed, ref } from "vue";
 import GameCard from "./components/GameCard.vue";
 import Header from "./components/header/Header.vue";
 import searchGames from "./services/rawg";
-import type { Game } from "./types/game";
 
 const searchTerm = ref("");
+const submittedSearchTerm = ref("");
 
-const games = ref<Game[]>([]);
+const {
+  data: games,
+  isPending,
+  error,
+} = useQuery({
+  queryKey: ["games", submittedSearchTerm],
+  queryFn: () => searchGames(submittedSearchTerm.value),
+  enabled: computed(() => submittedSearchTerm.value.length > 0),
+});
 
-const search = async () => {
-  games.value = await searchGames(searchTerm.value);
+const search = (query: string) => {
+  submittedSearchTerm.value = query;
 };
-
-onMounted(search);
 </script>
 
 <template>
   <Header v-model="searchTerm" @search="search" />
+
+  <p v-if="isPending && submittedSearchTerm">Loading...</p>
+
+  <p v-else-if="error">Something went wrong: {{ error.message }}</p>
+
+  <div v-else-if="games?.length" class="game-grid">
+    <GameCard v-for="game in games" :key="game.id" :game="game" />
+  </div>
+
+  <p v-else>Search for a game to get started.</p>
 
   <div class="game-grid">
     <GameCard v-for="game in games" :key="game.id" :game="game" />
