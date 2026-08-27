@@ -20,7 +20,7 @@
 
 .logo-image {
   display: block;
-  width: 140px;
+  width: 8.75rem;
   height: auto;
 }
 
@@ -41,5 +41,11 @@
 
 .navigation a.router-link-active {
   color: #f5f5f5;
+}
+
+@media (max-width: 700px) {
+  .logo-image {
+    width: 12rem;
+  }
 }
 </style>

@@ -54,9 +54,7 @@ const selectGame = (gameId: number) => {
     </div>
 
     <section class="content">
-      <div v-if="isPending && !!submittedSearchTerm">
-        <Loader :active="isPending && !!submittedSearchTerm" />
-      </div>
+      <Loader v-if="isPending && submittedSearchTerm" :active="isPending" />
 
       <ErrorMessage
         v-else-if="error"

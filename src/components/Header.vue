@@ -18,9 +18,9 @@ defineProps<{
     <NavBar />
 
     <SearchForm
-      v-model="searchTerm"
-      @search="emit('search', searchTerm ?? '')"
       v-if="showSearch"
+      v-model="searchTerm"
+      @search="(query) => emit('search', query)"
     />
   </header>
 </template>
