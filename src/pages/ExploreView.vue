@@ -4,6 +4,7 @@ import { computed, ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import GameCard from "../components/GameCard.vue";
 import Header from "../components/Header.vue";
+import Loader from "../components/Loader.vue";
 import { searchGames } from "../services/rawg";
 
 const router = useRouter();
@@ -52,7 +53,9 @@ const selectGame = (gameId: number) => {
     </div>
 
     <section class="content">
-      <p v-if="isPending && submittedSearchTerm">Loading...</p>
+      <div v-if="isPending && !!submittedSearchTerm">
+        <Loader :active="isPending && !!submittedSearchTerm" />
+      </div>
 
       <p v-else-if="error">Something went wrong: {{ error.message }}</p>
 
