@@ -4,8 +4,10 @@ import { computed, ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import GameCard from "../components/GameCard.vue";
 import Header from "../components/Header.vue";
-import SearchForm from "../components/SearchForm.vue";
 import { searchGames } from "../services/rawg";
+
+const router = useRouter();
+const route = useRoute();
 
 const search = (query: string) => {
   submittedSearchTerm.value = query;
@@ -17,9 +19,6 @@ const search = (query: string) => {
     },
   });
 };
-
-const router = useRouter();
-const route = useRoute();
 
 const searchTerm = ref(
   typeof route.query.search === "string" ? route.query.search : "",
@@ -49,9 +48,7 @@ const selectGame = (gameId: number) => {
 <template>
   <main class="explore">
     <div class="explore-header">
-      <Header />
-
-      <SearchForm v-model="searchTerm" @search="search" />
+      <Header :onSearch="search" :showSearch="true" />
     </div>
 
     <section class="content">
@@ -88,21 +85,5 @@ const selectGame = (gameId: number) => {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 16px;
-}
-
-.explore-header {
-  display: flex;
-  align-items: center;
-  background: #1c1c1c;
-  border-bottom: 1px solid #333;
-}
-
-.explore-header :deep(.header) {
-  border-bottom: none;
-}
-
-.explore-header :deep(.search-form) {
-  margin-left: auto;
-  margin-right: 20px;
 }
 </style>

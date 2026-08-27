@@ -26,6 +26,8 @@ const onSubmit = () => {
 .search-form {
   display: flex;
   gap: 8px;
+  margin-left: auto;
+  margin-right: 20px;
 }
 
 .search-form input {

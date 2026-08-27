@@ -5,7 +5,8 @@ import NavigationSection from "../components/NavigationSection.vue";
 </script>
 
 <template>
-  <Header />
+  <Header :showSearch="false" />
+
   <main class="my-games">
     <section class="hero">
       <h1>My Games</h1>
