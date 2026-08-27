@@ -2,6 +2,7 @@
 import { useQuery } from "@tanstack/vue-query";
 import { computed, ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
+import ErrorMessage from "../components/ErrorMessage.vue";
 import GameCard from "../components/GameCard.vue";
 import Header from "../components/Header.vue";
 import Loader from "../components/Loader.vue";
@@ -57,7 +58,10 @@ const selectGame = (gameId: number) => {
         <Loader :active="isPending && !!submittedSearchTerm" />
       </div>
 
-      <p v-else-if="error">Something went wrong: {{ error.message }}</p>
+      <ErrorMessage
+        v-else-if="error"
+        :message="`Something went wrong: ${error.message}`"
+      />
 
       <p v-else-if="!games?.length">Search for a game to get started.</p>
 
