@@ -2,7 +2,9 @@
 import { useQuery } from "@tanstack/vue-query";
 import { computed } from "vue";
 import { useRoute } from "vue-router";
+import ErrorMessage from "../components/ErrorMessage.vue";
 import Header from "../components/Header.vue";
+import Loader from "../components/Loader.vue";
 import { getGameDetails, getGameSeries } from "../services/rawg";
 import { useLibraryStore } from "../stores/library";
 
@@ -44,7 +46,7 @@ const isInLibrary = (gameId: number) => {
 </script>
 
 <template>
-  <Header />
+  <Header :showSearch="false" />
   <main class="details">
     <p v-if="isPending" class="status">Loading...</p>
 
@@ -145,11 +147,12 @@ const isInLibrary = (gameId: number) => {
       <section class="series">
         <h2>Related Games</h2>
 
-        <p v-if="isSeriesPending">Loading series...</p>
+        <Loader v-if="isSeriesPending" :active="isSeriesPending" />
 
-        <p v-else-if="seriesError" class="error">
-          Something went wrong: {{ seriesError.message }}
-        </p>
+        <ErrorMessage
+          v-else-if="seriesError"
+          :message="`Something went wrong: ${seriesError.message}`"
+        />
 
         <div v-else-if="series?.length" class="series-grid">
           <RouterLink

@@ -36,15 +36,6 @@ const {
   queryFn: () => searchGames(submittedSearchTerm.value),
   enabled: computed(() => submittedSearchTerm.value.length > 0),
 });
-
-const selectGame = (gameId: number) => {
-  router.push({
-    name: "game-details",
-    params: {
-      id: gameId,
-    },
-  });
-};
 </script>
 
 <template>
@@ -64,12 +55,7 @@ const selectGame = (gameId: number) => {
       <p v-else-if="!games?.length">Search for a game to get started.</p>
 
       <div v-else class="game-grid">
-        <GameCard
-          v-for="game in games"
-          :key="game.id"
-          :game="game"
-          @select="selectGame"
-        />
+        <GameCard v-for="game in games" :key="game.id" :game="game" />
       </div>
     </section>
   </main>

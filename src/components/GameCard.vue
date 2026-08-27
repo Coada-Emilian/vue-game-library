@@ -4,14 +4,16 @@ import type { Game } from "../types/game";
 defineProps<{
   game: Game;
 }>();
-
-const emit = defineEmits<{
-  select: [gameId: number];
-}>();
 </script>
 
 <template>
-  <article class="game-card" @click="emit('select', game.id)">
+  <RouterLink
+    :to="{
+      name: 'game-details',
+      params: { id: game.id },
+    }"
+    class="game-card"
+  >
     <img
       v-if="game.background_image"
       :src="game.background_image"
@@ -36,11 +38,14 @@ const emit = defineEmits<{
         {{ game.genres.map((genre) => genre.name).join(" · ") }}
       </p>
     </div>
-  </article>
+  </RouterLink>
 </template>
 
 <style scoped>
 .game-card {
+  display: block;
+  color: inherit;
+  text-decoration: none;
   overflow: hidden;
   border: 1px solid #333;
   border-radius: 10px;
