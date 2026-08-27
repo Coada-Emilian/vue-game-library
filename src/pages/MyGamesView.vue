@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import Header from "../components/Header.vue";
+import NavigationCard from "../components/NavigationCard.vue";
+import NavigationSection from "../components/NavigationSection.vue";
 </script>
 
 <template>
@@ -14,27 +16,31 @@ import Header from "../components/Header.vue";
       </p>
     </section>
 
-    <section class="navigation">
-      <RouterLink to="/my-games/backlog" class="navigation-card">
-        <h2>Backlog</h2>
-        <p>Games you want to play.</p>
-      </RouterLink>
+    <NavigationSection>
+      <NavigationCard
+        to="/my-games/backlog"
+        title="Backlog"
+        description="Games you want to play."
+      />
 
-      <RouterLink to="/my-games/playing" class="navigation-card">
-        <h2>Playing</h2>
-        <p>Games you're currently playing.</p>
-      </RouterLink>
+      <NavigationCard
+        to="/my-games/playing"
+        title="Playing"
+        description="Games you're currently playing."
+      />
 
-      <RouterLink to="/my-games/finished" class="navigation-card">
-        <h2>Finished</h2>
-        <p>Games you've completed.</p>
-      </RouterLink>
+      <NavigationCard
+        to="/my-games/finished"
+        title="Finished"
+        description="Games you've completed."
+      />
 
-      <RouterLink to="/my-games/abandoned" class="navigation-card">
-        <h2>Abandoned</h2>
-        <p>Games you decided not to finish.</p>
-      </RouterLink>
-    </section>
+      <NavigationCard
+        to="/my-games/abandoned"
+        title="Abandoned"
+        description="Games you decided not to finish."
+      />
+    </NavigationSection>
   </main>
 </template>
 
@@ -65,39 +71,6 @@ import Header from "../components/Header.vue";
   line-height: 1.6;
 }
 
-.navigation {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(280px, 1fr));
-  gap: 30px;
-  width: min(900px, 100%);
-}
-
-.navigation-card {
-  padding: 35px;
-  border: 1px solid #333;
-  border-radius: 14px;
-  background: #1c1c1c;
-  text-decoration: none;
-  transition:
-    transform 0.2s ease,
-    border-color 0.2s ease;
-}
-
-.navigation-card:hover {
-  transform: translateY(-5px);
-  border-color: #666;
-}
-
-.navigation-card h2 {
-  margin: 0 0 12px;
-}
-
-.navigation-card p {
-  margin: 0;
-  color: #aaa;
-  line-height: 1.5;
-}
-
 @media (max-width: 700px) {
   .my-games {
     padding: 50px 20px;
@@ -105,10 +78,6 @@ import Header from "../components/Header.vue";
 
   .hero h1 {
     font-size: 2.5rem;
-  }
-
-  .navigation {
-    grid-template-columns: 1fr;
   }
 }
 </style>
