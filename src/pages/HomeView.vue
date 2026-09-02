@@ -9,8 +9,9 @@ import NavigationSection from "../components/NavigationSection.vue";
       <img src="/logo.png" alt="Game Library" class="logo" />
 
       <p>
-        Welcome to your game library. Discover new games and keep track of what
-        you want to play.
+        Welcome to Backlogged — where all those games you're totally going to
+        play someday can finally have a home. Discover new games, keep track of
+        your collection, and decide what you're playing next.
       </p>
     </section>
 
@@ -18,13 +19,13 @@ import NavigationSection from "../components/NavigationSection.vue";
       <NavigationCard
         to="/explore"
         title="Explore"
-        description="Search for games and discover new adventures."
+        description="Discover new games. Add them to the backlog. Pretend you'll play them all."
       />
 
       <NavigationCard
         to="/my-games"
         title="My Games"
-        description="Keep track of the games you want to play and finish."
+        description="Keep track of what you're playing, what you've conquered, and what’s patiently waiting in your backlog."
       />
     </NavigationSection>
   </main>

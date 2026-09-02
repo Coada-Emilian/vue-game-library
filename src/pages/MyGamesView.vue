@@ -12,8 +12,8 @@ import NavigationSection from "../components/NavigationSection.vue";
       <h1>My Games</h1>
 
       <p>
-        Keep track of the games you want to play, are playing, have finished, or
-        have abandoned.
+        Keep track of what you're playing, what you've finished, and what's
+        still waiting in your backlog.
       </p>
     </section>
 
@@ -21,7 +21,7 @@ import NavigationSection from "../components/NavigationSection.vue";
       <NavigationCard
         to="/my-games/backlog"
         title="Backlog"
-        description="Games you want to play."
+        description="Games patiently waiting for their turn."
       />
 
       <NavigationCard
@@ -33,13 +33,13 @@ import NavigationSection from "../components/NavigationSection.vue";
       <NavigationCard
         to="/my-games/finished"
         title="Finished"
-        description="Games you've completed."
+        description="Games you've conquered and completed."
       />
 
       <NavigationCard
         to="/my-games/abandoned"
         title="Abandoned"
-        description="Games you decided not to finish."
+        description="Games you decided weren't worth finishing."
       />
     </NavigationSection>
   </main>
